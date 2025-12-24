@@ -1,4 +1,4 @@
-/* MoMo Payment Modal Styles */
+/* MoMo Payment Modal Styles - Professional Dark Theme */
 
 .momo-modal-overlay {
     position: fixed;
@@ -6,29 +6,36 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(4px);
+    background: rgba(0, 0, 0, 0.85);
+    /* Darker backdrop */
+    backdrop-filter: blur(8px);
+    /* Stronger blur */
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 1000;
-    padding: var(--spacing-lg);
+    padding: var(--spacing-sm);
 }
 
 .momo-modal {
-    background: var(--color-card-bg, #ffffff);
-    border-radius: var(--radius-2xl);
+    background: #111827;
+    /* Dark grayish blue */
+    border: 1px solid #374151;
+    border-radius: 20px;
+    /* Softer corners */
     width: 100%;
-    max-width: 420px;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    max-width: 440px;
+    /* Slightly wider */
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
     overflow: hidden;
-    animation: modalSlideIn 0.3s ease-out;
+    animation: modalSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    color: #F9FAFB;
 }
 
 @keyframes modalSlideIn {
     from {
         opacity: 0;
-        transform: translateY(20px) scale(0.95);
+        transform: translateY(20px) scale(0.98);
     }
 
     to {
@@ -42,68 +49,88 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: var(--spacing-lg) var(--spacing-xl);
-    border-bottom: 1px solid var(--color-border);
+    padding: 20px 24px;
+    border-bottom: 1px solid #374151;
+    background: #1F2937;
 }
 
 .momo-modal-header h2 {
-    font-size: var(--font-size-lg);
+    font-size: 1.15rem;
     font-weight: 600;
-    color: var(--color-text);
+    color: #F9FAFB;
     margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .momo-close-btn {
-    background: none;
+    background: rgba(255, 255, 255, 0.05);
     border: none;
-    font-size: 28px;
-    color: var(--color-text-muted);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: #9CA3AF;
     cursor: pointer;
-    line-height: 1;
-    padding: 0;
-    transition: color 0.2s;
+    transition: all 0.2s;
 }
 
 .momo-close-btn:hover {
-    color: var(--color-text);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
 }
 
-/* Amount Display */
+/* Amount Display - Clean & Minimal */
 .momo-amount-display {
-    background: linear-gradient(135deg, var(--color-primary) 0%, #0d9488 100%);
-    padding: var(--spacing-xl);
+    background: #1f2937;
+    padding: 30px 24px;
     text-align: center;
-    color: white;
+    border-bottom: 1px solid #374151;
 }
 
 .momo-amount-display .amount-label {
     display: block;
-    font-size: var(--font-size-sm);
-    opacity: 0.9;
-    margin-bottom: var(--spacing-xs);
+    font-size: 0.85rem;
+    color: #9CA3AF;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+    margin-bottom: 8px;
 }
 
 .momo-amount-display .amount-value {
-    display: block;
-    font-size: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    font-size: 3rem;
     font-weight: 700;
-    letter-spacing: -0.02em;
+    color: white;
+    line-height: 1;
 }
 
 .momo-amount-display .amount-exam {
-    display: block;
-    font-size: var(--font-size-sm);
-    opacity: 0.8;
-    margin-top: var(--spacing-xs);
+    display: inline-block;
+    background: rgba(16, 185, 129, 0.1);
+    color: #10B981;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-top: 12px;
 }
 
 /* Step Container */
 .momo-step {
-    padding: var(--spacing-xl);
+    padding: 24px;
 }
 
 .animate-fade-in {
-    animation: fadeInUp 0.3s ease-out;
+    animation: fadeInUp 0.4s ease-out;
 }
 
 @keyframes fadeInUp {
@@ -118,453 +145,256 @@
     }
 }
 
-/* Networks Hint */
+/* Networks Hint & Badges */
 .momo-networks-hint {
-    text-align: center;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: 24px;
 }
 
-.momo-networks-hint>span {
+.hint-label {
     display: block;
-    font-size: var(--font-size-sm);
-    color: var(--color-text-muted);
-    margin-bottom: var(--spacing-sm);
+    font-size: 0.85rem;
+    color: #9CA3AF;
+    margin-bottom: 10px;
 }
 
 .network-badges {
-    display: flex;
-    justify-content: center;
-    gap: var(--spacing-sm);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
 }
 
 .network-badge {
-    font-size: var(--font-size-xs);
-    font-weight: 600;
-    padding: var(--spacing-xs) var(--spacing-sm);
-    border-radius: var(--radius-full);
+    display: flex;
+    flex-direction: column;
+    /* Stack dot and text or row */
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 4px;
+    border-radius: 12px;
+    background: #1F2937;
+    border: 1px solid #374151;
+    color: #9CA3AF;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
 }
 
-.network-badge.mtn {
-    background: rgba(255, 204, 0, 0.15);
-    color: #B8860B;
+.net-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #4B5563;
+    transition: background 0.3s;
 }
 
-.network-badge.airteltigo {
-    background: rgba(228, 0, 0, 0.1);
-    color: #E40000;
+/* Active States */
+.network-badge.mtn.active {
+    background: rgba(255, 204, 0, 0.1);
+    border-color: #FFCC00;
+    color: #FFCC00;
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.1);
+    transform: translateY(-2px);
 }
 
-.network-badge.telecel {
-    background: rgba(230, 0, 0, 0.1);
-    color: #E60000;
+.network-badge.mtn.active .net-dot {
+    background: #FFCC00;
+}
+
+.network-badge.airteltigo.active {
+    background: rgba(220, 38, 38, 0.1);
+    border-color: #EF4444;
+    color: #EF4444;
+    box-shadow: 0 0 15px rgba(220, 38, 38, 0.1);
+    transform: translateY(-2px);
+}
+
+.network-badge.airteltigo.active .net-dot {
+    background: #EF4444;
+}
+
+.network-badge.telecel.active {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: #F87171;
+    color: #F87171;
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.1);
+    transform: translateY(-2px);
+}
+
+.network-badge.telecel.active .net-dot {
+    background: #F87171;
+}
+
+.network-badge.dimmed {
+    opacity: 0.4;
+    transform: scale(0.98);
 }
 
 /* Input Group */
 .momo-input-group {
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: 24px;
 }
 
 .momo-input-group label {
     display: block;
-    font-size: var(--font-size-sm);
+    font-size: 0.9rem;
     font-weight: 500;
-    color: var(--color-text);
-    margin-bottom: var(--spacing-sm);
+    color: #F9FAFB;
+    margin-bottom: 8px;
 }
 
 .momo-input-wrapper {
     display: flex;
     align-items: center;
-    background: var(--color-surface);
-    border: 2px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    transition: border-color 0.2s;
+    background: #030712;
+    /* Very dark input bg */
+    border: 1px solid #374151;
+    border-radius: 12px;
+    padding: 2px;
+    transition: all 0.2s;
+    height: 56px;
 }
 
 .momo-input-wrapper:focus-within {
-    border-color: var(--color-primary);
+    border-color: #10B981;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
 }
 
-.country-code {
-    padding: var(--spacing-md) var(--spacing-md);
-    background: var(--color-border);
-    color: var(--color-text-muted);
+.momo-input-wrapper.network-detected {
+    border-color: #10B981;
+}
+
+.country-prefix {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 16px;
+    height: 100%;
+    border-right: 1px solid #374151;
+    background: rgba(255, 255, 255, 0.02);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.country-prefix span {
+    color: #D1D5DB;
     font-weight: 500;
-    font-size: var(--font-size-base);
 }
 
-.momo-input-wrapper input {
+.momo-input-field {
     flex: 1;
     border: none;
     background: transparent;
-    padding: var(--spacing-md);
-    font-size: var(--font-size-lg);
+    padding: 0 16px;
+    font-size: 1.1rem;
     font-weight: 500;
-    color: var(--color-text);
-    letter-spacing: 0.05em;
+    color: white;
+    letter-spacing: 1px;
+    height: 100%;
 }
 
-.momo-input-wrapper input:focus {
+.momo-input-field:focus {
     outline: none;
 }
 
-.momo-input-wrapper input::placeholder {
-    color: var(--color-text-muted);
-    opacity: 0.5;
+.momo-input-field::placeholder {
+    color: #4B5563;
 }
 
-.detected-network {
-    padding: var(--spacing-xs) var(--spacing-md);
-    margin-right: var(--spacing-sm);
-    border-radius: var(--radius-md);
-    font-size: var(--font-size-xs);
-    font-weight: 600;
-    white-space: nowrap;
+.network-indicator {
+    padding: 0 16px;
+    font-size: 1.2rem;
+    animation: iconPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.momo-error {
+@keyframes iconPop {
+    from {
+        transform: scale(0) rotate(-45deg);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1) rotate(0);
+        opacity: 1;
+    }
+}
+
+.momo-error-msg {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #EF4444;
+    font-size: 0.85rem;
+    margin-top: 8px;
+}
+
+.momo-error-msg svg {
+    width: 14px;
+    height: 14px;
+}
+
+.momo-helper-text {
     display: block;
-    color: var(--color-error, #ef4444);
-    font-size: var(--font-size-sm);
-    margin-top: var(--spacing-sm);
+    color: #6B7280;
+    font-size: 0.85rem;
+    margin-top: 8px;
 }
 
 /* Proceed Button */
 .momo-proceed-btn {
     width: 100%;
-    padding: var(--spacing-md) var(--spacing-xl);
-    background: var(--color-accent);
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #10B981;
     color: white;
     border: none;
-    border-radius: var(--radius-lg);
-    font-size: var(--font-size-base);
+    border-radius: 12px;
+    font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s;
 }
 
 .momo-proceed-btn:hover:not(:disabled) {
-    background: var(--color-accent-hover, #059669);
+    background: #059669;
     transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
 }
 
 .momo-proceed-btn:disabled {
-    opacity: 0.5;
+    background: #374151;
+    color: #9CA3AF;
     cursor: not-allowed;
-}
-
-/* Confirm Step */
-.momo-confirm-card {
-    border: 2px solid;
-    border-radius: var(--radius-xl);
-    overflow: hidden;
-    margin-bottom: var(--spacing-lg);
-}
-
-.confirm-network {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--spacing-sm);
-    padding: var(--spacing-md);
-}
-
-.network-icon {
-    font-size: 1.5rem;
-}
-
-.network-name {
-    font-weight: 600;
-    font-size: var(--font-size-base);
-}
-
-.confirm-details {
-    padding: var(--spacing-lg);
-    background: var(--color-background);
-}
-
-.confirm-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: var(--spacing-sm) 0;
-}
-
-.confirm-row:not(:last-child) {
-    border-bottom: 1px solid var(--color-border);
-}
-
-.confirm-row span {
-    color: var(--color-text-muted);
-    font-size: var(--font-size-sm);
-}
-
-.confirm-row strong {
-    color: var(--color-text);
-    font-size: var(--font-size-base);
-}
-
-.confirm-notice {
-    text-align: center;
-    font-size: var(--font-size-sm);
-    color: var(--color-text-muted);
-    margin-bottom: var(--spacing-lg);
-    line-height: 1.5;
-}
-
-.momo-actions {
-    display: flex;
-    gap: var(--spacing-md);
-}
-
-.momo-back-btn {
-    flex: 1;
-    padding: var(--spacing-md);
-    background: var(--color-surface);
-    color: var(--color-text-muted);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    font-size: var(--font-size-sm);
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.momo-back-btn:hover {
-    background: var(--color-background);
-    color: var(--color-text);
-}
-
-.momo-confirm-btn {
-    flex: 2;
-    padding: var(--spacing-md);
-    color: white;
-    border: none;
-    border-radius: var(--radius-lg);
-    font-size: var(--font-size-sm);
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.momo-confirm-btn:hover {
-    filter: brightness(0.9);
-}
-
-/* Processing Step */
-.momo-processing {
-    text-align: center;
-    padding: var(--spacing-3xl) var(--spacing-xl);
-}
-
-.processing-spinner {
-    width: 48px;
-    height: 48px;
-    border: 4px solid var(--color-border);
-    border-top-color: var(--color-accent);
-    border-radius: 50%;
-    margin: 0 auto var(--spacing-lg);
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-.momo-processing h3 {
-    color: var(--color-text);
-    margin-bottom: var(--spacing-sm);
-}
-
-.momo-processing p {
-    color: var(--color-text-muted);
-    font-size: var(--font-size-sm);
-}
-
-/* Prompt Step */
-.momo-prompt {
-    text-align: center;
-}
-
-.prompt-icon {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto var(--spacing-lg);
-}
-
-.prompt-icon svg {
-    width: 40px;
-    height: 40px;
-}
-
-.momo-prompt h3 {
-    color: var(--color-text);
-    font-size: var(--font-size-xl);
-    margin-bottom: var(--spacing-sm);
-}
-
-.momo-prompt>p {
-    color: var(--color-text-muted);
-    margin-bottom: var(--spacing-xl);
-    line-height: 1.5;
-}
-
-.momo-prompt>p strong {
-    color: var(--color-text);
-}
-
-.prompt-instructions {
-    background: var(--color-surface);
-    border-radius: var(--radius-lg);
-    padding: var(--spacing-lg);
-    margin-bottom: var(--spacing-xl);
-    text-align: left;
-}
-
-.instruction-step {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-md);
-    padding: var(--spacing-sm) 0;
-}
-
-.instruction-step:not(:last-child) {
-    border-bottom: 1px solid var(--color-border);
-}
-
-.step-number {
-    width: 24px;
-    height: 24px;
-    background: var(--color-accent);
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: var(--font-size-xs);
-    font-weight: 600;
-    flex-shrink: 0;
-}
-
-.instruction-step span:last-child {
-    font-size: var(--font-size-sm);
-    color: var(--color-text);
-}
-
-.prompt-waiting {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--spacing-md);
-    padding: var(--spacing-md);
-    background: var(--color-surface);
-    border-radius: var(--radius-lg);
-    margin-bottom: var(--spacing-lg);
-}
-
-.waiting-dots {
-    display: flex;
-    gap: 4px;
-}
-
-.waiting-dots span {
-    width: 8px;
-    height: 8px;
-    background: var(--color-accent);
-    border-radius: 50%;
-    animation: pulse 1.4s ease-in-out infinite;
-}
-
-.waiting-dots span:nth-child(2) {
-    animation-delay: 0.2s;
-}
-
-.waiting-dots span:nth-child(3) {
-    animation-delay: 0.4s;
-}
-
-@keyframes pulse {
-
-    0%,
-    80%,
-    100% {
-        opacity: 0.3;
-        transform: scale(0.8);
-    }
-
-    40% {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-.prompt-waiting>span {
-    color: var(--color-text-muted);
-    font-size: var(--font-size-sm);
-}
-
-.momo-demo-complete-btn {
-    width: 100%;
-    padding: var(--spacing-md);
-    background: var(--color-accent);
-    color: white;
-    border: none;
-    border-radius: var(--radius-lg);
-    font-size: var(--font-size-sm);
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.momo-demo-complete-btn:hover {
-    background: var(--color-accent-hover, #059669);
+    opacity: 0.7;
 }
 
 /* Security Footer */
 .momo-security-footer {
     display: flex;
-    align-items: center;
     justify-content: center;
-    gap: var(--spacing-sm);
-    padding: var(--spacing-md);
-    background: var(--color-surface);
-    border-top: 1px solid var(--color-border);
+    align-items: center;
+    gap: 8px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.02);
+    border-top: 1px solid #374151;
+    font-size: 0.8rem;
+    color: #52525B;
+    /* Zinc 600 */
+    transition: color 0.3s;
+}
+
+.momo-security-footer:hover {
+    color: #cfd0d3;
 }
 
 .momo-security-footer svg {
-    width: 16px;
-    height: 16px;
-    color: var(--color-text-muted);
+    width: 14px;
+    height: 14px;
 }
 
-.momo-security-footer span {
-    font-size: var(--font-size-xs);
-    color: var(--color-text-muted);
-}
-
-/* Responsive */
-@media (max-width: 480px) {
-    .momo-modal-overlay {
-        padding: var(--spacing-md);
-    }
-
-    .momo-amount-display .amount-value {
-        font-size: 2rem;
-    }
-
-    .momo-actions {
-        flex-direction: column;
-    }
-
-    .momo-back-btn,
-    .momo-confirm-btn {
-        flex: 1;
-    }
-}
+/* Additional styling for success/prompt/processing steps would follow similar premium patterns */

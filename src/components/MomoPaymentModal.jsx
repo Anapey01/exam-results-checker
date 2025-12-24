@@ -189,36 +189,52 @@ export default function MomoPaymentModal({
                 {step === 'input' && (
                     <div className="momo-step animate-fade-in">
                         <div className="momo-networks-hint">
-                            <span>Supported Networks:</span>
+                            <span className="hint-label">Automatic Network Detection:</span>
                             <div className="network-badges">
-                                <span className="network-badge mtn">MTN</span>
-                                <span className="network-badge airteltigo">AirtelTigo</span>
-                                <span className="network-badge telecel">Telecel</span>
+                                <div className={`network-badge mtn ${detectedNetwork === 'MTN' ? 'active' : ''} ${detectedNetwork && detectedNetwork !== 'MTN' ? 'dimmed' : ''}`}>
+                                    <span className="net-dot"></span>
+                                    MTN MoMo
+                                </div>
+                                <div className={`network-badge airteltigo ${detectedNetwork === 'AIRTELTIGO' ? 'active' : ''} ${detectedNetwork && detectedNetwork !== 'AIRTELTIGO' ? 'dimmed' : ''}`}>
+                                    <span className="net-dot"></span>
+                                    AirtelTigo
+                                </div>
+                                <div className={`network-badge telecel ${detectedNetwork === 'TELECEL' ? 'active' : ''} ${detectedNetwork && detectedNetwork !== 'TELECEL' ? 'dimmed' : ''}`}>
+                                    <span className="net-dot"></span>
+                                    Telecel
+                                </div>
                             </div>
                         </div>
 
                         <div className="momo-input-group">
-                            <label>Enter your MoMo number</label>
-                            <div className="momo-input-wrapper">
-                                <span className="country-code">+233</span>
+                            <label>Mobile Money Number</label>
+                            <div className={`momo-input-wrapper ${detectedNetwork ? 'network-detected' : ''}`}>
+                                <div className="country-prefix">
+                                    <img src="https://flagcdn.com/w20/gh.png" alt="Ghana" className="gh-flag" />
+                                    <span>+233</span>
+                                </div>
                                 <input
                                     type="tel"
                                     value={momoNumber}
                                     onChange={handlePhoneChange}
-                                    placeholder="024 XXX XXXX"
+                                    placeholder="024 123 4567"
                                     autoFocus
-                                    className={detectedNetwork ? 'has-network' : ''}
+                                    className="momo-input-field"
                                 />
-                                {networkInfo && (
-                                    <div
-                                        className="detected-network"
-                                        style={{ backgroundColor: networkInfo.bgColor, color: networkInfo.color }}
-                                    >
-                                        {networkInfo.shortName}
+                                {detectedNetwork && (
+                                    <div className="network-indicator">
+                                        {NETWORK_INFO[detectedNetwork].icon}
                                     </div>
                                 )}
                             </div>
-                            {error && <span className="momo-error">{error}</span>}
+                            {error ? (
+                                <span className="momo-error-msg">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></svg>
+                                    {error}
+                                </span>
+                            ) : (
+                                <span className="momo-helper-text">Enter your 10-digit number</span>
+                            )}
                         </div>
 
                         <button
@@ -226,7 +242,8 @@ export default function MomoPaymentModal({
                             onClick={handleProceed}
                             disabled={momoNumber.length < 10 || !detectedNetwork}
                         >
-                            Proceed to Pay
+                            <span>Pay {currency} {amount}</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
                         </button>
                     </div>
                 )}
