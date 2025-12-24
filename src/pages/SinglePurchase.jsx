@@ -68,9 +68,12 @@ function SinglePurchase() {
     // Form validation with real-time feedback
     const {
         values: formData,
+        errors: formErrors,
+        handleChange,
+        handleBlur,
+        validateAll,
         getFieldProps,
         getFieldError,
-        validateAll,
         reset: resetForm
     } = useFormValidation(
         { indexNumber: '', phone: '', email: '' },
@@ -80,6 +83,15 @@ function SinglePurchase() {
             email: ['email']
         }
     );
+
+    // Copy feedback state
+    const [copiedField, setCopiedField] = useState(null);
+
+    const copyToClipboard = (text, field) => {
+        navigator.clipboard.writeText(text);
+        setCopiedField(field);
+        setTimeout(() => setCopiedField(null), 2000);
+    };
 
     // Security: Submit guard prevents double-clicks
     const [isSubmitGuarded, guardedSubmit] = useSubmitGuard();
@@ -308,29 +320,77 @@ function SinglePurchase() {
                             </div>
 
                             {/* Credentials Card */}
-                            <div className="checker-credentials-card">
-                                <div className="credentials-card-header">
-                                    <LockIcon />
-                                    <span>Your Access Credentials</span>
-                                </div>
-                                <div className="credentials-card-body">
-                                    <div className="credential-item">
-                                        <span className="credential-label">PIN</span>
-                                        <span className="credential-value">{accessCredentials.pin}</span>
+                            {/* Digital Scratch Card */}
+                            <div className="digital-scratch-card animate-scale-in">
+                                <div className="card-pattern-overlay"></div>
+                                <div className="card-content">
+                                    <div className="card-header">
+                                        <div className="card-logo">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                                            </svg>
+                                            <span>RESULTGATE ACCESS</span>
+                                        </div>
+                                        <div className="card-value">
+                                            <span className="value-label">VALUE</span>
+                                            <span className="value-amount">GHS {selectedExam?.price}</span>
+                                        </div>
                                     </div>
-                                    <div className="credential-divider"></div>
-                                    <div className="credential-item">
-                                        <span className="credential-label">Serial Number</span>
-                                        <span className="credential-value">{accessCredentials.serial}</span>
+
+                                    <div className="card-body">
+                                        <div className="code-group">
+                                            <label>PIN NUMBER</label>
+                                            <div className="code-display pin-display">
+                                                <span className="code-text">{accessCredentials.pin}</span>
+                                                <button
+                                                    className="copy-btn"
+                                                    onClick={() => copyToClipboard(accessCredentials.pin, 'pin')}
+                                                    aria-label="Copy PIN"
+                                                >
+                                                    {copiedField === 'pin' ? (
+                                                        <span className="copy-success">COPIED</span>
+                                                    ) : (
+                                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                        </svg>
+                                                    )}
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div className="code-group">
+                                            <label>SERIAL NUMBER</label>
+                                            <div className="code-display serial-display">
+                                                <span className="code-text">{accessCredentials.serial}</span>
+                                                <button
+                                                    className="copy-btn"
+                                                    onClick={() => copyToClipboard(accessCredentials.serial, 'serial')}
+                                                    aria-label="Copy Serial"
+                                                >
+                                                    {copiedField === 'serial' ? (
+                                                        <span className="copy-success">COPIED</span>
+                                                    ) : (
+                                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                        </svg>
+                                                    )}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="card-footer">
+                                        <div className="card-chip"></div>
+                                        <div className="card-instruction">
+                                            VALID FOR 3 USES • ONE INDEX NUMBER ONLY
+                                        </div>
                                     </div>
                                 </div>
-                                <p className="credentials-save-note">
-                                    📌 Save these for future use on official WAEC/GES portals
-                                </p>
-                                <p className="credentials-usage-note">
-                                    Each PIN can be used only 3 times and for one index number only.
-                                </p>
                             </div>
+
+
 
                             {/* View Results CTA */}
                             <div className="view-results-section">

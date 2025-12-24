@@ -125,14 +125,20 @@ function BulkPurchase() {
                                     <form onSubmit={handleAuthSubmit} className="auth-form">
                                         <div className="form-group">
                                             <label htmlFor="authContact">Email or Phone Number</label>
-                                            <input
-                                                type="text"
-                                                id="authContact"
-                                                placeholder="Enter email or phone"
-                                                value={authData.email}
-                                                onChange={(e) => setAuthData({ ...authData, email: e.target.value })}
-                                                required
-                                            />
+                                            <div className="input-with-icon">
+                                                <svg className="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                                    <circle cx="12" cy="7" r="4" />
+                                                </svg>
+                                                <input
+                                                    type="text"
+                                                    id="authContact"
+                                                    placeholder="Enter email or phone"
+                                                    value={authData.email}
+                                                    onChange={(e) => setAuthData({ ...authData, email: e.target.value })}
+                                                    required
+                                                />
+                                            </div>
                                         </div>
                                         <button type="submit" className="btn btn-accent btn-lg auth-btn">
                                             Get Verification Code
@@ -147,15 +153,21 @@ function BulkPurchase() {
                                         </p>
                                         <div className="form-group">
                                             <label htmlFor="authOtp">Verification Code</label>
-                                            <input
-                                                type="text"
-                                                id="authOtp"
-                                                placeholder="Enter 6-digit code"
-                                                value={authData.otp}
-                                                onChange={(e) => setAuthData({ ...authData, otp: e.target.value })}
-                                                maxLength={6}
-                                                required
-                                            />
+                                            <div className="input-with-icon">
+                                                <svg className="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                                                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                                                </svg>
+                                                <input
+                                                    type="text"
+                                                    id="authOtp"
+                                                    placeholder="Enter 6-digit code"
+                                                    value={authData.otp}
+                                                    onChange={(e) => setAuthData({ ...authData, otp: e.target.value })}
+                                                    maxLength={6}
+                                                    required
+                                                />
+                                            </div>
                                         </div>
                                         <button
                                             type="submit"
