@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import './MomoPaymentModal.css';
+import './MomoPaymentModal.css?v=2.0';
 
 // Ghana Mobile Network Prefixes
 const NETWORK_PREFIXES = {
