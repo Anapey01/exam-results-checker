@@ -1,0 +1,117 @@
+.legal-page {
+    min-height: 100vh;
+    background: var(--color-background);
+}
+
+.legal-header {
+    background: white;
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--spacing-md) 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.legal-logo {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    text-decoration: none;
+}
+
+.legal-logo img {
+    height: 32px;
+    width: auto;
+}
+
+.legal-logo span {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    color: var(--color-text);
+}
+
+.legal-content {
+    padding: var(--spacing-3xl) 0;
+}
+
+.legal-content .container {
+    max-width: 800px;
+}
+
+.legal-content h1 {
+    font-size: var(--font-size-3xl);
+    font-weight: 800;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-sm);
+}
+
+.last-updated {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-2xl);
+    padding-bottom: var(--spacing-lg);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.legal-content section {
+    margin-bottom: var(--spacing-xl);
+}
+
+.legal-content h2 {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-md);
+}
+
+.legal-content p {
+    color: var(--color-text-muted);
+    line-height: 1.8;
+    margin-bottom: var(--spacing-md);
+}
+
+.legal-content ul {
+    margin: 0 0 var(--spacing-md) var(--spacing-lg);
+    padding: 0;
+}
+
+.legal-content li {
+    color: var(--color-text-muted);
+    line-height: 1.8;
+    margin-bottom: var(--spacing-sm);
+}
+
+.legal-content li strong {
+    color: var(--color-text);
+}
+
+.legal-footer {
+    margin-top: var(--spacing-3xl);
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid var(--color-border);
+}
+
+.legal-footer a {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.legal-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .legal-content {
+        padding: var(--spacing-xl) 0;
+    }
+
+    .legal-content h1 {
+        font-size: var(--font-size-2xl);
+    }
+
+    .legal-content h2 {
+        font-size: var(--font-size-base);
+    }
+}
