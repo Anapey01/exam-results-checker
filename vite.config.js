@@ -7,6 +7,14 @@ export default defineConfig({
 
   // Development server configuration
   server: {
+    // Proxy API requests to backend during development
+    proxy: {
+      '/api': {
+        target: 'http://localhost:5000',
+        changeOrigin: true,
+        secure: false,
+      }
+    },
     // Security headers for development
     // In production, configure these on your web server (nginx, Apache) or CDN
     headers: {
