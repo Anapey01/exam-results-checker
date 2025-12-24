@@ -15,35 +15,17 @@ const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
  * Backend must validate prices again during checkout
  */
 export async function fetchExamPricing() {
-    // TODO: Replace with real API call
-    // return fetch(`${API_BASE_URL}/pricing/exams`).then(res => res.json());
-
-    // Simulated API response
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve({
-                success: true,
-                data: [
-                    {
-                        id: 'wassce',
-                        name: 'WASSCE',
-                        price: 50,
-                        currency: 'GHS',
-                        description: 'West African Senior School Certificate Examination'
-                    },
-                    {
-                        id: 'bece',
-                        name: 'BECE',
-                        price: 30,
-                        currency: 'GHS',
-                        description: 'Basic Education Certificate Examination'
-                    },
-                ],
-                // Include a server timestamp for validation
-                timestamp: Date.now()
-            });
-        }, 100);
-    });
+    try {
+        const response = await fetch(`${API_BASE_URL}/pricing/exams`);
+        if (!response.ok) {
+            throw new Error('Failed to fetch exam pricing');
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Error fetching exam pricing:', error);
+        // Return empty data on error - let UI handle empty state
+        return { success: false, data: [], message: error.message };
+    }
 }
 
 /**

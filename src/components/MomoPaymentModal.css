@@ -1,0 +1,570 @@
+/* MoMo Payment Modal Styles */
+
+.momo-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: var(--spacing-lg);
+}
+
+.momo-modal {
+    background: var(--color-card-bg, #ffffff);
+    border-radius: var(--radius-2xl);
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Header */
+.momo-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-lg) var(--spacing-xl);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.momo-modal-header h2 {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0;
+}
+
+.momo-close-btn {
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    transition: color 0.2s;
+}
+
+.momo-close-btn:hover {
+    color: var(--color-text);
+}
+
+/* Amount Display */
+.momo-amount-display {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #0d9488 100%);
+    padding: var(--spacing-xl);
+    text-align: center;
+    color: white;
+}
+
+.momo-amount-display .amount-label {
+    display: block;
+    font-size: var(--font-size-sm);
+    opacity: 0.9;
+    margin-bottom: var(--spacing-xs);
+}
+
+.momo-amount-display .amount-value {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.momo-amount-display .amount-exam {
+    display: block;
+    font-size: var(--font-size-sm);
+    opacity: 0.8;
+    margin-top: var(--spacing-xs);
+}
+
+/* Step Container */
+.momo-step {
+    padding: var(--spacing-xl);
+}
+
+.animate-fade-in {
+    animation: fadeInUp 0.3s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Networks Hint */
+.momo-networks-hint {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.momo-networks-hint>span {
+    display: block;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-sm);
+}
+
+.network-badges {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-sm);
+}
+
+.network-badge {
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-full);
+}
+
+.network-badge.mtn {
+    background: rgba(255, 204, 0, 0.15);
+    color: #B8860B;
+}
+
+.network-badge.airteltigo {
+    background: rgba(228, 0, 0, 0.1);
+    color: #E40000;
+}
+
+.network-badge.telecel {
+    background: rgba(230, 0, 0, 0.1);
+    color: #E60000;
+}
+
+/* Input Group */
+.momo-input-group {
+    margin-bottom: var(--spacing-xl);
+}
+
+.momo-input-group label {
+    display: block;
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-sm);
+}
+
+.momo-input-wrapper {
+    display: flex;
+    align-items: center;
+    background: var(--color-surface);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: border-color 0.2s;
+}
+
+.momo-input-wrapper:focus-within {
+    border-color: var(--color-primary);
+}
+
+.country-code {
+    padding: var(--spacing-md) var(--spacing-md);
+    background: var(--color-border);
+    color: var(--color-text-muted);
+    font-weight: 500;
+    font-size: var(--font-size-base);
+}
+
+.momo-input-wrapper input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: var(--spacing-md);
+    font-size: var(--font-size-lg);
+    font-weight: 500;
+    color: var(--color-text);
+    letter-spacing: 0.05em;
+}
+
+.momo-input-wrapper input:focus {
+    outline: none;
+}
+
+.momo-input-wrapper input::placeholder {
+    color: var(--color-text-muted);
+    opacity: 0.5;
+}
+
+.detected-network {
+    padding: var(--spacing-xs) var(--spacing-md);
+    margin-right: var(--spacing-sm);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.momo-error {
+    display: block;
+    color: var(--color-error, #ef4444);
+    font-size: var(--font-size-sm);
+    margin-top: var(--spacing-sm);
+}
+
+/* Proceed Button */
+.momo-proceed-btn {
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-xl);
+    background: var(--color-accent);
+    color: white;
+    border: none;
+    border-radius: var(--radius-lg);
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.momo-proceed-btn:hover:not(:disabled) {
+    background: var(--color-accent-hover, #059669);
+    transform: translateY(-1px);
+}
+
+.momo-proceed-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Confirm Step */
+.momo-confirm-card {
+    border: 2px solid;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    margin-bottom: var(--spacing-lg);
+}
+
+.confirm-network {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+}
+
+.network-icon {
+    font-size: 1.5rem;
+}
+
+.network-name {
+    font-weight: 600;
+    font-size: var(--font-size-base);
+}
+
+.confirm-details {
+    padding: var(--spacing-lg);
+    background: var(--color-background);
+}
+
+.confirm-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-sm) 0;
+}
+
+.confirm-row:not(:last-child) {
+    border-bottom: 1px solid var(--color-border);
+}
+
+.confirm-row span {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+}
+
+.confirm-row strong {
+    color: var(--color-text);
+    font-size: var(--font-size-base);
+}
+
+.confirm-notice {
+    text-align: center;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.5;
+}
+
+.momo-actions {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.momo-back-btn {
+    flex: 1;
+    padding: var(--spacing-md);
+    background: var(--color-surface);
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.momo-back-btn:hover {
+    background: var(--color-background);
+    color: var(--color-text);
+}
+
+.momo-confirm-btn {
+    flex: 2;
+    padding: var(--spacing-md);
+    color: white;
+    border: none;
+    border-radius: var(--radius-lg);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.momo-confirm-btn:hover {
+    filter: brightness(0.9);
+}
+
+/* Processing Step */
+.momo-processing {
+    text-align: center;
+    padding: var(--spacing-3xl) var(--spacing-xl);
+}
+
+.processing-spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid var(--color-border);
+    border-top-color: var(--color-accent);
+    border-radius: 50%;
+    margin: 0 auto var(--spacing-lg);
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.momo-processing h3 {
+    color: var(--color-text);
+    margin-bottom: var(--spacing-sm);
+}
+
+.momo-processing p {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+}
+
+/* Prompt Step */
+.momo-prompt {
+    text-align: center;
+}
+
+.prompt-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--spacing-lg);
+}
+
+.prompt-icon svg {
+    width: 40px;
+    height: 40px;
+}
+
+.momo-prompt h3 {
+    color: var(--color-text);
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--spacing-sm);
+}
+
+.momo-prompt>p {
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-xl);
+    line-height: 1.5;
+}
+
+.momo-prompt>p strong {
+    color: var(--color-text);
+}
+
+.prompt-instructions {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+    text-align: left;
+}
+
+.instruction-step {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-sm) 0;
+}
+
+.instruction-step:not(:last-child) {
+    border-bottom: 1px solid var(--color-border);
+}
+
+.step-number {
+    width: 24px;
+    height: 24px;
+    background: var(--color-accent);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.instruction-step span:last-child {
+    font-size: var(--font-size-sm);
+    color: var(--color-text);
+}
+
+.prompt-waiting {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.waiting-dots {
+    display: flex;
+    gap: 4px;
+}
+
+.waiting-dots span {
+    width: 8px;
+    height: 8px;
+    background: var(--color-accent);
+    border-radius: 50%;
+    animation: pulse 1.4s ease-in-out infinite;
+}
+
+.waiting-dots span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.waiting-dots span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes pulse {
+
+    0%,
+    80%,
+    100% {
+        opacity: 0.3;
+        transform: scale(0.8);
+    }
+
+    40% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.prompt-waiting>span {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+}
+
+.momo-demo-complete-btn {
+    width: 100%;
+    padding: var(--spacing-md);
+    background: var(--color-accent);
+    color: white;
+    border: none;
+    border-radius: var(--radius-lg);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.momo-demo-complete-btn:hover {
+    background: var(--color-accent-hover, #059669);
+}
+
+/* Security Footer */
+.momo-security-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+}
+
+.momo-security-footer svg {
+    width: 16px;
+    height: 16px;
+    color: var(--color-text-muted);
+}
+
+.momo-security-footer span {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .momo-modal-overlay {
+        padding: var(--spacing-md);
+    }
+
+    .momo-amount-display .amount-value {
+        font-size: 2rem;
+    }
+
+    .momo-actions {
+        flex-direction: column;
+    }
+
+    .momo-back-btn,
+    .momo-confirm-btn {
+        flex: 1;
+    }
+}

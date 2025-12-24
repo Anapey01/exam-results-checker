@@ -102,11 +102,18 @@ function BulkPurchase() {
         <div className="bulk-purchase-page">
             <header className="bp-header">
                 <div className="container">
-                    <Link to="/" className="bp-logo">
-                        <img src={logo} alt="ResultGate" />
-                        <span>ResultGate</span>
-                    </Link>
-                    <span className="bp-badge">Bulk Access</span>
+                    <div className="bp-header-left">
+                        <Link to="/" className="bp-logo">
+                            <img src={logo} alt="ResultGate" />
+                            <span>ResultGate</span>
+                        </Link>
+                        <span className="bp-badge">Bulk Access</span>
+                    </div>
+                    <div className="bp-header-right">
+                        <Link to="/" className="bp-back-link">
+                            ← Back to Home
+                        </Link>
+                    </div>
                 </div>
             </header>
 
@@ -275,9 +282,42 @@ function BulkPurchase() {
                             )}
 
                             <div className="bulk-trust">
-                                <p>✓ Instant delivery to dashboard</p>
-                                <p>✓ Downloadable CSV export</p>
-                                <p>✓ Dedicated support</p>
+                                <div className="trust-badge">
+                                    <div className="trust-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                                        </svg>
+                                    </div>
+                                    <div className="trust-text">
+                                        <span className="trust-title">Instant Delivery</span>
+                                        <span className="trust-desc">Direct to your dashboard</span>
+                                    </div>
+                                </div>
+                                <div className="trust-badge">
+                                    <div className="trust-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                            <polyline points="7 10 12 15 17 10" />
+                                            <line x1="12" y1="15" x2="12" y2="3" />
+                                        </svg>
+                                    </div>
+                                    <div className="trust-text">
+                                        <span className="trust-title">CSV Export</span>
+                                        <span className="trust-desc">Download codes anytime</span>
+                                    </div>
+                                </div>
+                                <div className="trust-badge">
+                                    <div className="trust-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                                            <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                                        </svg>
+                                    </div>
+                                    <div className="trust-text">
+                                        <span className="trust-title">Dedicated Support</span>
+                                        <span className="trust-desc">Priority assistance</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     )}

@@ -4,6 +4,7 @@ import logo from '../assets/logo.png';
 import { fetchExamPricing, processPayment, fetchResults } from '../services/api';
 import { useSubmitGuard } from '../hooks/useSecurityGuards';
 import { useFormValidation } from '../hooks/useFormValidation';
+import MomoPaymentModal from '../components/MomoPaymentModal';
 import './SinglePurchase.css';
 
 // SVG Icon Components
@@ -64,6 +65,7 @@ function SinglePurchase() {
     const [isFetchingResults, setIsFetchingResults] = useState(false);
     const [accessCredentials, setAccessCredentials] = useState(null);
     const [resultData, setResultData] = useState(null);
+    const [showPaymentModal, setShowPaymentModal] = useState(false);
 
     // Form validation with real-time feedback
     const {
@@ -76,11 +78,9 @@ function SinglePurchase() {
         getFieldError,
         reset: resetForm
     } = useFormValidation(
-        { indexNumber: '', phone: '', email: '' },
+        { phone: '' },
         {
-            indexNumber: ['required', 'indexNumber'],
-            phone: ['phone'],
-            email: ['email']
+            phone: ['required', 'phone']
         }
     );
 
@@ -122,37 +122,61 @@ function SinglePurchase() {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    // Step 1: Process payment and get checker (PIN/Serial)
-    // SECURITY: Uses guardedSubmit to prevent double-clicks
-    const handleCheckout = async (e) => {
+    // Open payment modal when user clicks Pay
+    const handleCheckout = (e) => {
         e.preventDefault();
+        if (!formData.phone || formData.phone.length < 10) {
+            return;
+        }
+        setShowPaymentModal(true);
+    };
 
-        await guardedSubmit(async () => {
-            setIsProcessing(true);
+    // Handle payment initiation from modal
+    const handlePaymentInitiated = async (paymentData) => {
+        // This will be called when user confirms payment in the modal
+        // The actual API call will happen here
+        console.log('Payment initiated:', paymentData);
 
-            try {
-                // SECURITY: Server validates price based on exam ID, not frontend price
-                const response = await processPayment({
-                    examId: selectedExam.id,
-                    indexNumber: formData.indexNumber,
-                    contact: formData.phone || formData.email,
-                    expectedTotal: selectedExam.price // For display only, server recalculates
+        // In production, this would call the backend to initiate Paystack payment
+        // await initiatePaystackPayment(paymentData);
+    };
+
+    // Handle successful payment
+    const handlePaymentSuccess = async (paymentData) => {
+        setShowPaymentModal(false);
+        setIsProcessing(true);
+
+        try {
+            // Process payment with backend after MoMo approval
+            const response = await processPayment({
+                examId: selectedExam.id,
+                phone: paymentData.momoNumber,
+                contact: paymentData.momoNumber,
+                network: paymentData.network,
+                expectedTotal: selectedExam.price
+            });
+
+            if (response.success) {
+                setAccessCredentials({
+                    pin: response.data.pin,
+                    serial: response.data.serial,
+                    examType: selectedExam.name,
+                    phone: paymentData.momoNumber,
+                    deliveredTo: paymentData.momoNumber,
                 });
-
-                if (response.success) {
-                    setAccessCredentials({
-                        pin: response.data.pin,
-                        serial: response.data.serial,
-                        examType: selectedExam.name,
-                        indexNumber: formData.indexNumber,
-                        deliveredTo: formData.phone || formData.email,
-                    });
-                    setStep(3);
-                }
-            } finally {
-                setIsProcessing(false);
+                setStep(3);
             }
-        });
+        } catch (error) {
+            console.error('Payment processing error:', error);
+        } finally {
+            setIsProcessing(false);
+        }
+    };
+
+    // Handle payment error
+    const handlePaymentError = (error) => {
+        console.error('Payment error:', error);
+        setShowPaymentModal(false);
     };
 
     // Step 2: User clicks to view results - fetch from backend
@@ -164,9 +188,9 @@ function SinglePurchase() {
             setResultData({
                 ...mockResults[selectedExam.id],
                 examType: selectedExam.name,
-                indexNumber: formData.indexNumber,
+                phone: formData.phone,
                 candidateName: 'ABENA MENSAH', // Simulated - would come from backend
-                deliveredTo: formData.phone || formData.email,
+                deliveredTo: formData.phone,
                 checkedAt: new Date().toLocaleString(),
                 pin: accessCredentials.pin,
                 serial: accessCredentials.serial,
@@ -241,24 +265,11 @@ function SinglePurchase() {
                             </button>
 
                             <h1 className="sp-title">Enter Your Details</h1>
-                            <p className="sp-subtitle">We'll check your {selectedExam.name} results and display them instantly</p>
+                            <p className="sp-subtitle">We'll assist you in checking your {selectedExam.name} results securely</p>
 
                             <form className="checkout-form checkout-form-centered" onSubmit={handleCheckout}>
-                                <div className={`form-group ${getFieldError('indexNumber') ? 'has-error' : ''}`}>
-                                    <label htmlFor="indexNumber">Index Number *</label>
-                                    <input
-                                        type="text"
-                                        id="indexNumber"
-                                        placeholder="e.g., 0123456789"
-                                        {...getFieldProps('indexNumber')}
-                                    />
-                                    {getFieldError('indexNumber') && (
-                                        <span className="field-error">{getFieldError('indexNumber')}</span>
-                                    )}
-                                </div>
-
                                 <div className={`form-group ${getFieldError('phone') ? 'has-error' : ''}`}>
-                                    <label htmlFor="phone">Phone Number (for SMS)</label>
+                                    <label htmlFor="phone">Phone Number *</label>
                                     <input
                                         type="tel"
                                         id="phone"
@@ -270,27 +281,10 @@ function SinglePurchase() {
                                     )}
                                 </div>
 
-                                <div className="form-divider">
-                                    <span>or</span>
-                                </div>
-
-                                <div className={`form-group ${getFieldError('email') ? 'has-error' : ''}`}>
-                                    <label htmlFor="email">Email Address</label>
-                                    <input
-                                        type="email"
-                                        id="email"
-                                        placeholder="e.g., student@example.com"
-                                        {...getFieldProps('email')}
-                                    />
-                                    {getFieldError('email') && (
-                                        <span className="field-error">{getFieldError('email')}</span>
-                                    )}
-                                </div>
-
                                 <button
                                     type="submit"
                                     className="btn btn-accent btn-lg checkout-btn"
-                                    disabled={isProcessing || !formData.indexNumber || (!formData.phone && !formData.email)}
+                                    disabled={isProcessing || !formData.phone}
                                 >
                                     {isProcessing ? (
                                         <>
@@ -478,7 +472,7 @@ function SinglePurchase() {
                                         setSelectedExam(null);
                                         setResultData(null);
                                         setAccessCredentials(null);
-                                        setFormData({ indexNumber: '', phone: '', email: '' });
+                                        resetForm();
                                     }}
                                 >
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -491,6 +485,18 @@ function SinglePurchase() {
                     )}
                 </div>
             </main>
+
+            {/* Mobile Money Payment Modal */}
+            <MomoPaymentModal
+                isOpen={showPaymentModal}
+                onClose={() => setShowPaymentModal(false)}
+                amount={selectedExam?.price || 0}
+                currency="GH₵"
+                examType={selectedExam?.name || ''}
+                onPaymentInitiated={handlePaymentInitiated}
+                onPaymentSuccess={handlePaymentSuccess}
+                onPaymentError={handlePaymentError}
+            />
         </div>
     );
 }

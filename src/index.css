@@ -8,6 +8,9 @@
   --color-accent: #059669;
   --color-accent-hover: #047857;
   --color-background: #ffffff;
+  --color-navbar-bg: rgba(255, 255, 255, 0.95);
+  --color-footer-bg: #1f2937;
+  --color-card-bg: #ffffff;
   --color-surface: #f3f4f6;
   --color-surface-hover: #e5e7eb;
   --color-text: #1f2937;
@@ -65,6 +68,9 @@
   --color-accent: #10b981;
   --color-accent-hover: #34d399;
   --color-background: #111827;
+  --color-navbar-bg: rgba(17, 24, 39, 0.95);
+  --color-footer-bg: #0f172a;
+  --color-card-bg: #1e293b;
   --color-surface: #1f2937;
   --color-surface-hover: #374151;
   --color-text: #f9fafb;

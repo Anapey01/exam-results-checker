@@ -16,8 +16,12 @@ function Navbar() {
     ];
 
     const isActive = (path) => {
+        // For hash links on home page, don't mark as active (only mark exact page matches)
+        if (path.includes('#')) return false;
+        // For the home page, require exact match
         if (path === '/') return location.pathname === '/';
-        return location.pathname.startsWith(path.split('#')[0]);
+        // For other pages, check if pathname starts with the path
+        return location.pathname.startsWith(path);
     };
 
     const handleNavClick = (path) => {
