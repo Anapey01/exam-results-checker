@@ -279,7 +279,7 @@
     color: #4B5563;
     cursor: not-allowed;
     box-shadow: none;
-    border: 1px solid #374151;
+    opacity: 0.8;
 }
 
 /* Security Footer */
@@ -289,8 +289,7 @@
     align-items: center;
     gap: 8px;
     padding: 16px;
-    background: rgba(255, 255, 255, 0.02);
-    border-top: 1px solid #374151;
+    background: transparent;
     font-size: 0.8rem;
     color: #52525B;
     /* Zinc 600 */
