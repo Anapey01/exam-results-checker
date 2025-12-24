@@ -183,24 +183,6 @@ export default function MomoPaymentModal({
                 {/* Step: Input Phone Number */}
                 {step === 'input' && (
                     <div className="momo-step animate-fade-in">
-                        <div className="momo-networks-hint">
-                            <span className="hint-label">Automatic Network Detection:</span>
-                            <div className="network-badges">
-                                <div className={`network-badge mtn ${detectedNetwork === 'MTN' ? 'active' : ''} ${detectedNetwork && detectedNetwork !== 'MTN' ? 'dimmed' : ''}`}>
-                                    <span className="net-dot"></span>
-                                    MTN MoMo
-                                </div>
-                                <div className={`network-badge airteltigo ${detectedNetwork === 'AIRTELTIGO' ? 'active' : ''} ${detectedNetwork && detectedNetwork !== 'AIRTELTIGO' ? 'dimmed' : ''}`}>
-                                    <span className="net-dot"></span>
-                                    AirtelTigo
-                                </div>
-                                <div className={`network-badge telecel ${detectedNetwork === 'TELECEL' ? 'active' : ''} ${detectedNetwork && detectedNetwork !== 'TELECEL' ? 'dimmed' : ''}`}>
-                                    <span className="net-dot"></span>
-                                    Telecel
-                                </div>
-                            </div>
-                        </div>
-
                         <div className="momo-input-group">
                             <label>Mobile Money Number</label>
                             <div className={`momo-input-wrapper ${detectedNetwork ? 'network-detected' : ''}`}>

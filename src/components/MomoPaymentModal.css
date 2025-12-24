@@ -108,92 +108,7 @@
     }
 }
 
-/* Networks Hint & Badges */
-.momo-networks-hint {
-    margin-bottom: 24px;
-}
 
-.hint-label {
-    display: block;
-    font-size: 0.85rem;
-    color: #9CA3AF;
-    margin-bottom: 10px;
-}
-
-.network-badges {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-}
-
-.network-badge {
-    display: flex;
-    flex-direction: column;
-    /* Stack dot and text or row */
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    padding: 10px 4px;
-    border-radius: 12px;
-    background: #1F2937;
-    border: 1px solid #374151;
-    color: #9CA3AF;
-    font-size: 0.8rem;
-    font-weight: 500;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-}
-
-.net-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #4B5563;
-    transition: background 0.3s;
-}
-
-/* Active States */
-.network-badge.mtn.active {
-    background: rgba(255, 204, 0, 0.1);
-    border-color: #FFCC00;
-    color: #FFCC00;
-    box-shadow: 0 0 15px rgba(255, 204, 0, 0.1);
-    transform: translateY(-2px);
-}
-
-.network-badge.mtn.active .net-dot {
-    background: #FFCC00;
-}
-
-.network-badge.airteltigo.active {
-    background: rgba(220, 38, 38, 0.1);
-    border-color: #EF4444;
-    color: #EF4444;
-    box-shadow: 0 0 15px rgba(220, 38, 38, 0.1);
-    transform: translateY(-2px);
-}
-
-.network-badge.airteltigo.active .net-dot {
-    background: #EF4444;
-}
-
-.network-badge.telecel.active {
-    background: rgba(239, 68, 68, 0.1);
-    border-color: #F87171;
-    color: #F87171;
-    box-shadow: 0 0 15px rgba(239, 68, 68, 0.1);
-    transform: translateY(-2px);
-}
-
-.network-badge.telecel.active .net-dot {
-    background: #F87171;
-}
-
-.network-badge.dimmed {
-    opacity: 0.4;
-    transform: scale(0.98);
-}
 
 /* Input Group */
 .momo-input-group {
@@ -307,34 +222,64 @@
 }
 
 /* Proceed Button */
+/* Proceed Button - Premium Gradient */
 .momo-proceed-btn {
     width: 100%;
-    height: 52px;
+    height: 56px;
+    /* Taller for presence */
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    background: #10B981;
+    gap: 12px;
+    background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+    /* Emerald gradient */
     color: white;
     border: none;
-    border-radius: 12px;
-    font-size: 1rem;
+    border-radius: 14px;
+    /* Slightly more rounded */
+    font-size: 1.05rem;
     font-weight: 600;
+    letter-spacing: 0.5px;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.2), 0 2px 4px -1px rgba(16, 185, 129, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.momo-proceed-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: translateX(-100%);
+    transition: 0.5s;
 }
 
 .momo-proceed-btn:hover:not(:disabled) {
-    background: #059669;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.3), 0 4px 6px -2px rgba(16, 185, 129, 0.1);
+    filter: brightness(1.05);
+}
+
+.momo-proceed-btn:hover:not(:disabled)::before {
+    transform: translateX(100%);
+}
+
+.momo-proceed-btn:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px -1px rgba(16, 185, 129, 0.2);
 }
 
 .momo-proceed-btn:disabled {
-    background: #374151;
-    color: #9CA3AF;
+    background: #1F2937;
+    color: #4B5563;
     cursor: not-allowed;
-    opacity: 0.7;
+    box-shadow: none;
+    border: 1px solid #374151;
 }
 
 /* Security Footer */
