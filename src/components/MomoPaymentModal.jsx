@@ -178,12 +178,7 @@ export default function MomoPaymentModal({
                     <button className="momo-close-btn" onClick={onClose}>×</button>
                 </div>
 
-                {/* Amount Display */}
-                <div className="momo-amount-display">
-                    <span className="amount-label">Amount to Pay</span>
-                    <span className="amount-value">{currency} {amount}</span>
-                    <span className="amount-exam">{examType} Result Check</span>
-                </div>
+
 
                 {/* Step: Input Phone Number */}
                 {step === 'input' && (

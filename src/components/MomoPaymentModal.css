@@ -85,44 +85,7 @@
 }
 
 /* Amount Display - Clean & Minimal */
-.momo-amount-display {
-    background: #1f2937;
-    padding: 30px 24px;
-    text-align: center;
-    border-bottom: 1px solid #374151;
-}
 
-.momo-amount-display .amount-label {
-    display: block;
-    font-size: 0.85rem;
-    color: #9CA3AF;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 500;
-    margin-bottom: 8px;
-}
-
-.momo-amount-display .amount-value {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
-    font-size: 3rem;
-    font-weight: 700;
-    color: white;
-    line-height: 1;
-}
-
-.momo-amount-display .amount-exam {
-    display: inline-block;
-    background: rgba(16, 185, 129, 0.1);
-    color: #10B981;
-    padding: 4px 12px;
-    border-radius: 12px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    margin-top: 12px;
-}
 
 /* Step Container */
 .momo-step {
@@ -253,8 +216,9 @@
     border: 1px solid #374151;
     border-radius: 12px;
     padding: 2px;
-    transition: all 0.2s;
-    height: 56px;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    height: 60px;
+    /* Slightly taller for better touch target */
 }
 
 .momo-input-wrapper:focus-within {
