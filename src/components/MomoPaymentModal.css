@@ -223,50 +223,59 @@
 
 /* Proceed Button */
 /* Proceed Button - Premium Gradient */
+/* Proceed Button - Premium Gradient */
 .momo-proceed-btn {
     width: 100%;
     height: 56px;
-    /* Taller for presence */
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 12px;
     background: linear-gradient(135deg, #10B981 0%, #059669 100%);
-    /* Emerald gradient */
     color: white;
-    border: none;
-    border-radius: 14px;
-    /* Slightly more rounded */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
     font-size: 1.05rem;
     font-weight: 600;
     letter-spacing: 0.5px;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.2), 0 2px 4px -1px rgba(16, 185, 129, 0.1);
+    box-shadow:
+        0 4px 6px -1px rgba(16, 185, 129, 0.2),
+        0 2px 4px -1px rgba(16, 185, 129, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
     position: relative;
     overflow: hidden;
+    margin-top: 8px;
 }
 
 .momo-proceed-btn::before {
     content: '';
     position: absolute;
     top: 0;
-    left: 0;
-    width: 100%;
+    left: -100%;
+    width: 200%;
     height: 100%;
-    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transform: translateX(-100%);
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.2),
+            transparent);
+    transform: skewX(-15deg);
     transition: 0.5s;
 }
 
 .momo-proceed-btn:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.3), 0 4px 6px -2px rgba(16, 185, 129, 0.1);
-    filter: brightness(1.05);
+    box-shadow:
+        0 20px 25px -5px rgba(16, 185, 129, 0.3),
+        0 8px 10px -6px rgba(16, 185, 129, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    filter: brightness(1.1);
 }
 
 .momo-proceed-btn:hover:not(:disabled)::before {
-    transform: translateX(100%);
+    left: 100%;
+    transition: 0.7s ease-in-out;
 }
 
 .momo-proceed-btn:active:not(:disabled) {
@@ -276,10 +285,115 @@
 
 .momo-proceed-btn:disabled {
     background: #1F2937;
+    border-color: #374151;
     color: #4B5563;
     cursor: not-allowed;
     box-shadow: none;
     opacity: 0.8;
+}
+
+/* Base Confirm Button Styles */
+.momo-confirm-btn {
+    flex: 1;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.momo-confirm-btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.momo-confirm-btn:active {
+    transform: translateY(0);
+}
+
+/* Confirmation Card */
+.momo-confirm-card {
+    background: #1F2937;
+    border: 1px solid #374151;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.confirm-details {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.confirm-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.confirm-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.confirm-row span {
+    color: #9CA3AF;
+    font-size: 0.95rem;
+}
+
+.confirm-row strong {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.confirm-notice {
+    text-align: center;
+    color: #D1D5DB;
+    font-size: 0.95rem;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    line-height: 1.5;
+}
+
+.momo-actions {
+    display: flex;
+    gap: 16px;
+    align-items: stretch;
+}
+
+/* Ghost Button for Change Number */
+.momo-back-btn {
+    background: transparent;
+    border: 1px solid #374151;
+    color: #9CA3AF;
+    padding: 0 20px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.momo-back-btn:hover {
+    border-color: #6B7280;
+    color: white;
+    background: rgba(255, 255, 255, 0.02);
 }
 
 /* Security Footer */

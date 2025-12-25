@@ -200,7 +200,7 @@ export default function MomoPaymentModal({
                                 />
                                 {detectedNetwork && (
                                     <div className="network-indicator">
-                                        {NETWORK_INFO[detectedNetwork].icon}
+
                                     </div>
                                 )}
                             </div>
@@ -220,7 +220,6 @@ export default function MomoPaymentModal({
                             disabled={momoNumber.length < 10 || !detectedNetwork}
                         >
                             <span>Pay {currency} {amount}</span>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
                         </button>
                     </div>
                 )}
@@ -230,7 +229,7 @@ export default function MomoPaymentModal({
                     <div className="momo-step animate-fade-in">
                         <div className="momo-confirm-card" style={{ borderColor: networkInfo.color }}>
                             <div className="confirm-network" style={{ backgroundColor: networkInfo.bgColor }}>
-                                <span className="network-icon">{networkInfo.icon}</span>
+
                                 <span className="network-name" style={{ color: networkInfo.color }}>
                                     {networkInfo.name}
                                 </span>
@@ -248,20 +247,19 @@ export default function MomoPaymentModal({
                         </div>
 
                         <p className="confirm-notice">
-                            You will receive a prompt on your phone to approve this payment.
-                            Please ensure your phone is nearby.
+                            Check your handset for the authorization prompt.
                         </p>
 
                         <div className="momo-actions">
                             <button className="momo-back-btn" onClick={() => setStep('input')}>
-                                ← Change Number
+                                Change Number
                             </button>
                             <button
                                 className="momo-confirm-btn"
                                 onClick={handleConfirmPayment}
                                 style={{ backgroundColor: networkInfo.color }}
                             >
-                                Send Payment Request
+                                Confirm Payment
                             </button>
                         </div>
                     </div>
@@ -279,30 +277,15 @@ export default function MomoPaymentModal({
                 {/* Step: Waiting for PIN prompt */}
                 {step === 'prompt' && networkInfo && (
                     <div className="momo-step momo-prompt animate-fade-in">
-                        <div className="prompt-icon" style={{ backgroundColor: networkInfo.bgColor }}>
-                            <svg viewBox="0 0 24 24" fill="none" stroke={networkInfo.color} strokeWidth="2">
-                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                            </svg>
-                        </div>
-                        <h3>Check Your Phone!</h3>
-                        <p>
-                            A payment prompt has been sent to<br />
-                            <strong>{formatPhoneNumber(momoNumber)}</strong>
+                        <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '8px', color: 'white' }}>Authorize Payment</h3>
+                        <p style={{ marginBottom: '24px', color: '#9CA3AF' }}>
+                            A prompt has been sent to<br />
+                            <strong style={{ color: 'white' }}>{formatPhoneNumber(momoNumber)}</strong>
                         </p>
-                        <div className="prompt-instructions">
-                            <div className="instruction-step">
-                                <span className="step-number">1</span>
-                                <span>You will receive a USSD prompt on your phone</span>
-                            </div>
-                            <div className="instruction-step">
-                                <span className="step-number">2</span>
-                                <span>Enter your MoMo PIN to approve</span>
-                            </div>
-                            <div className="instruction-step">
-                                <span className="step-number">3</span>
-                                <span>Wait for confirmation</span>
-                            </div>
-                        </div>
+
+                        <p className="confirm-notice">
+                            Please approve the transaction on your mobile device.
+                        </p>
 
                         <div className="prompt-waiting">
                             <div className="waiting-dots">
